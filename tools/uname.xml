@@ -1,0 +1,12 @@
+<tool id="uname" name="Uname">
+    <command>
+        sleep $time ; uname -a &gt; "$output"
+    </command>
+    <inputs>
+        <param name="time" type="text" title="seconds to sleep" value="1"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="txt" />
+    </outputs>
+</tool>
+

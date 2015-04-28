@@ -1,0 +1,13 @@
+<tool id="malloc" name="malloc">
+    <command interpreter="python">
+        malloc.py $size $time $output
+    </command>
+    <inputs>
+        <param name="size" type="text" title="MB to malloc" value="1024"/>
+        <param name="time" type="text" title="Seconds to sleep" value="60"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="txt" />
+    </outputs>
+</tool>
+

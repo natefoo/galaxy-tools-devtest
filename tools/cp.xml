@@ -1,0 +1,12 @@
+<tool id="cp" name="Copy">
+    <command>
+        sleep $time ; cp $input $output
+    </command>
+    <inputs>
+        <param name="input" type="data" label="Input"/>
+        <param name="time" size="10" type="text" value="30" label="Seconds to sleep"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="input" metadata_source="input"/>
+    </outputs>
+</tool>
