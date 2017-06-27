@@ -1,0 +1,12 @@
+<tool id="exit" name="Exit Code" profile="16.04" version="1.0.0">
+    <command>
+        echo "exiting with code $code" &gt; "$output1" ; sleep "$time" ; exit "$code"
+    </command>
+    <inputs>
+        <param name="code" type="integer" title="Code to exit with" value="0"/>
+        <param name="time" type="integer" title="Seconds to sleep" value="0"/>
+    </inputs>
+    <outputs>
+        <data name="output1" format="txt" />
+    </outputs>
+</tool>
