@@ -1,10 +1,18 @@
 <tool id="malloc" name="malloc">
-    <command interpreter="python">
-        malloc.py $size $time $output
+    <command><![CDATA[
+        if [ '$cap' = 'true' -a "\${GALAXY_MEMORY_MB:-0}" -gt 0 -a "\${GALAXY_MEMORY_MB:-0}" -lt '$size' ]; then
+            size=`expr "\$GALAXY_MEMORY_MB" - 32`;
+            echo "WARNING: requested malloc value ($size) is greater than GALAXY_MAX_MB (\$GALAXY_MEMORY_MB), limiting to \$GALAXY_MEMORY_MB - 32 = \$size";
+        else
+            size='$size';
+        fi;
+        python '$__tool_directory__/malloc.py' "\$size" '$time' '$output'
+    ]]>
     </command>
     <inputs>
-        <param name="size" type="text" title="MB to malloc" value="1024"/>
-        <param name="time" type="text" title="Seconds to sleep" value="60"/>
+        <param name="size" type="text" label="MB to malloc" value="1024"/>
+        <param name="time" type="text" label="Seconds to sleep" value="60"/>
+        <param name="cap" type="boolean" label="Cap malloc to value of $GALAXY_MEMORY_MB, if set?" />
     </inputs>
     <outputs>
         <data name="output" format="txt" />
